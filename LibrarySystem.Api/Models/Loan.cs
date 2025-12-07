@@ -5,8 +5,6 @@ namespace LibrarySystem.App.Models
 {
     public class Loan
     {
-        [Key]
-        public int LoanId { get; set; }
 
         [Required]
         [ForeignKey("Reader")]
