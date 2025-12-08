@@ -46,27 +46,27 @@ namespace LibrarySystem.App.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(LoanCreateDto dto)
         {
-            var book = await _context.Books
-                .FirstOrDefaultAsync(b => b.InventoryNumber == dto.InventoryNumber);
-
-            if (book == null)
-                return BadRequest("The book doesn't exist.");
-
-            if (book.Loan != null)
-                return BadRequest("The book is already lent.");
-
-            var reader = await _context.Readers
-                .FirstOrDefaultAsync(r => r.ReaderId == dto.ReaderId);
-
+            var reader = await _context.Readers.FindAsync(dto.ReaderId);
             if (reader == null)
-                return BadRequest("The reader doesn't exist.");
+                return BadRequest("Reader does not exist.");
+
+            var book = await _context.Books.FindAsync(dto.InventoryNumber);
+            if (book == null)
+                return BadRequest("Book does not exist.");
+
+            // check if book already loaned
+            var existingLoan = await _context.Loans
+                .FirstOrDefaultAsync(l => l.InventoryNumber == dto.InventoryNumber);
+
+            if (existingLoan != null)
+                return BadRequest("This book is already loaned out.");
 
             var loan = new Loan
             {
                 ReaderId = dto.ReaderId,
                 InventoryNumber = dto.InventoryNumber,
-                LoanDate = DateTime.Now,
-                ReturnDeadline = DateTime.Now.AddDays(30)
+                LoanDate = dto.LoanDate,
+                ReturnDeadline = dto.ReturnDeadline
             };
 
             _context.Loans.Add(loan);
@@ -75,7 +75,9 @@ namespace LibrarySystem.App.Controllers
             return CreatedAtAction(nameof(GetById), new { id = loan.LoanId }, loan);
         }
 
-        
+
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -98,7 +100,7 @@ namespace LibrarySystem.App.Controllers
 
             if (loan == null) return NotFound("A kölcsönzés nem található.");
 
-            loan.Book.Loan = null; // kapcsolat megszüntetése
+            loan.Book.Loan = null;
 
             _context.Loans.Remove(loan);
             await _context.SaveChangesAsync();

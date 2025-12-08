@@ -4900,8 +4900,8 @@
     },
     "LibrarySystem.App/1.0.0": {
       "type": "project",
-      "path": "../LibrarySystem.Api/LibrarySystem.App.csproj",
-      "msbuildProject": "../LibrarySystem.Api/LibrarySystem.App.csproj"
+      "path": "../LibrarySystem.App/LibrarySystem.App.csproj",
+      "msbuildProject": "../LibrarySystem.App/LibrarySystem.App.csproj"
     },
     "LibrarySystem.Shared/1.0.0": {
       "type": "project",
@@ -4953,8 +4953,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "E:\\Dokumentumok\\C# fejlesztés nagyvállalati környezetben\\LibrarySystem\\LibrarySystem\\LibrarySystem.Api\\LibrarySystem.App.csproj": {
-              "projectPath": "E:\\Dokumentumok\\C# fejlesztés nagyvállalati környezetben\\LibrarySystem\\LibrarySystem\\LibrarySystem.Api\\LibrarySystem.App.csproj"
+            "E:\\Dokumentumok\\C# fejlesztés nagyvállalati környezetben\\LibrarySystem\\LibrarySystem\\LibrarySystem.App\\LibrarySystem.App.csproj": {
+              "projectPath": "E:\\Dokumentumok\\C# fejlesztés nagyvállalati környezetben\\LibrarySystem\\LibrarySystem\\LibrarySystem.App\\LibrarySystem.App.csproj"
             },
             "E:\\Dokumentumok\\C# fejlesztés nagyvállalati környezetben\\LibrarySystem\\LibrarySystem\\LibrarySystem.Shared\\LibrarySystem.Shared.csproj": {
               "projectPath": "E:\\Dokumentumok\\C# fejlesztés nagyvállalati környezetben\\LibrarySystem\\LibrarySystem\\LibrarySystem.Shared\\LibrarySystem.Shared.csproj"
