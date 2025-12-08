@@ -1,0 +1,31 @@
+﻿@page "/readers"
+@using LibrarySystem.UI.Models
+@inject LibrarySystem.UI.Services.ReaderService ReaderService
+<h2>Readers</h2>
+@if (readers == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!readers.Any())
+{
+    <p>No readers found.</p>
+}
+else
+{
+    <ul>
+        @foreach (var r in readers)
+        {
+            <li>@r.ReaderId - @r.Name</li>
+        }
+    </ul>
+}
+
+
+@code {
+    private List<Reader>? readers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        readers = (await ReaderService.GetReaders())?.ToList() ?? new List<Reader>();
+    }
+}

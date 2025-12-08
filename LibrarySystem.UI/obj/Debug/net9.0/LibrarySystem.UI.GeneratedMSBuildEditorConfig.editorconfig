@@ -38,16 +38,16 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Dokumentumok/C\# fejlesztés nagyvállalati környezetben/LibrarySystem/LibrarySystem/LibrarySystem.UI/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+[E:/Dokumentumok/C\# fejlesztés nagyvállalati környezetben/LibrarySystem/LibrarySystem/LibrarySystem.UI/Pages/Boooks.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9vb2tzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Dokumentumok/C\# fejlesztés nagyvállalati környezetben/LibrarySystem/LibrarySystem/LibrarySystem.UI/Pages/Home.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+[E:/Dokumentumok/C\# fejlesztés nagyvállalati környezetben/LibrarySystem/LibrarySystem/LibrarySystem.UI/Pages/Loans.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9hbnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Dokumentumok/C\# fejlesztés nagyvállalati környezetben/LibrarySystem/LibrarySystem/LibrarySystem.UI/Pages/Weather.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2VhdGhlci5yYXpvcg==
+[E:/Dokumentumok/C\# fejlesztés nagyvállalati környezetben/LibrarySystem/LibrarySystem/LibrarySystem.UI/Pages/Readers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVhZGVycy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Dokumentumok/C\# fejlesztés nagyvállalati környezetben/LibrarySystem/LibrarySystem/LibrarySystem.UI/_Imports.razor]

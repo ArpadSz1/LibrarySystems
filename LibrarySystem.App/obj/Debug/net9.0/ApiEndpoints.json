@@ -120,7 +120,7 @@
   },
   {
     "ContainingType": "LibrarySystem.App.Controllers.LoanController",
-    "Method": "Create",
+    "Method": "CreateLoan",
     "RelativePath": "api/Loan",
     "HttpMethod": "POST",
     "IsController": true,
@@ -132,7 +132,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "LibrarySystem.App.Models.Loan",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "LibrarySystem.App.Controllers.LoanController",

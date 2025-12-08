@@ -1,0 +1,18 @@
+﻿@page "/books"
+@using LibrarySystem.UI.Models
+@inject LibrarySystem.UI.Services.BookService BookService
+<h2>Books</h2>
+<button @onclick="Refresh">Reload</button>
+<ul>
+    @foreach (var b in list)
+    {
+        <li>@b.InventoryNumber - @b.Title (@b.Author)</li>
+    }
+</ul>
+
+
+@code {
+    List<Book> list = new();
+    protected override async Task OnInitializedAsync() => list = await BookService.GetBooks();
+    async Task Refresh() => list = await BookService.GetBooks();
+}

@@ -2,6 +2,7 @@
 using LibrarySystem.App.Dtos;
 using LibrarySystem.App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibrarySystem.App.Controllers
@@ -44,22 +45,13 @@ namespace LibrarySystem.App.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Create(LoanCreateDto dto)
+        public async Task<ActionResult<Loan>> CreateLoan(LoanCreateDto dto)
         {
-            var reader = await _context.Readers.FindAsync(dto.ReaderId);
-            if (reader == null)
-                return BadRequest("Reader does not exist.");
+            if (dto.LoanDate < DateTime.Today)
+                return BadRequest("Loan date cannot be earlier than today.");
 
-            var book = await _context.Books.FindAsync(dto.InventoryNumber);
-            if (book == null)
-                return BadRequest("Book does not exist.");
-
-            // check if book already loaned
-            var existingLoan = await _context.Loans
-                .FirstOrDefaultAsync(l => l.InventoryNumber == dto.InventoryNumber);
-
-            if (existingLoan != null)
-                return BadRequest("This book is already loaned out.");
+            if (dto.ReturnDeadline < dto.LoanDate)
+                return BadRequest("Return date cannot be earlier than loan date.");
 
             var loan = new Loan
             {
@@ -70,7 +62,22 @@ namespace LibrarySystem.App.Controllers
             };
 
             _context.Loans.Add(loan);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException dbEx)
+            {
+                if (dbEx.InnerException is SqliteException sqliteEx)
+                {
+                    if (sqliteEx.SqliteErrorCode == 19 &&
+                        sqliteEx.Message.Contains("UNIQUE constraint failed", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return BadRequest("This book is already loaned out.");
+                    }
+                }
+                return StatusCode(StatusCodes.Status500InternalServerError, "Database error occurred.");
+            }
 
             return CreatedAtAction(nameof(GetById), new { id = loan.LoanId }, loan);
         }

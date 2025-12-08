@@ -1,0 +1,30 @@
+﻿@page "/loans"
+@using LibrarySystem.UI.Models
+@inject LibrarySystem.UI.Services.LoanService LoanService
+<h2>Loans</h2>
+@if (loans == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!loans.Any())
+{
+    <p>No loans found.</p>
+}
+else
+{
+    <ul>
+        @foreach (var l in loans)
+        {
+            <li>@l.LoanId - Book @l.InventoryNumber - Reader @l.ReaderId</li>
+        }
+    </ul>
+}
+
+@code {
+    private List<Loan>? loans;
+
+    protected override async Task OnInitializedAsync()
+    {
+        loans = (await LoanService.GetLoans())?.ToList() ?? new List<Loan>();
+    }
+}
