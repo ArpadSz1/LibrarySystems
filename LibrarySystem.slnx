@@ -1,6 +1,6 @@
 <Solution>
-  <Project Path="LibrarySystem.Api/LibrarySystem.App.csproj" />
   <Project Path="LibrarySystem.App.Tests/LibrarySystem.App.Tests.csproj" />
+  <Project Path="LibrarySystem.App/LibrarySystem.App.csproj" />
   <Project Path="LibrarySystem.Shared/LibrarySystem.Shared.csproj" />
   <Project Path="LibrarySystem.UI/LibrarySystem.UI.csproj" />
 </Solution>
